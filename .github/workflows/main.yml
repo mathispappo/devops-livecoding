@@ -23,4 +23,5 @@ jobs:
 
      # Finally, build and test your app with Maven
       - name: Build and test with Maven
-        run: mvn clean install
+        run: mvn clean verify
+        working-directory: simple-api
