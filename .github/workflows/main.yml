@@ -56,7 +56,8 @@ jobs:
         with:
           context: ./database
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/tp-devops-database:latest
-
+          # build on feature branches, push only on main branch
+          push: ${{ github.ref == 'refs/heads/main' }}
   
       - name: Build image and push httpd
         # DO the same for httpd
@@ -64,5 +65,7 @@ jobs:
         with:
           context: ./http-server
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/tp-devops-httpd:latest
+          # build on feature branches, push only on main branch
+          push: ${{ github.ref == 'refs/heads/main' }}
 
   
