@@ -26,6 +26,15 @@ jobs:
         run: mvn clean verify
         working-directory: simple-api
 
+      # SonarCloud Analysis
+      - name: Run SonarCloud analysis
+        run: mvn sonar:sonar \
+           -Dsonar.projectKey=your_project_key \
+           -Dsonar.organization=your_organization_key \
+           -Dsonar.host.url=https://sonarcloud.io \
+           -Dsonar.login=${{ secrets.SONAR_TOKEN }}
+        working-directory: simple-api
+
   # define job to build and publish docker image
   build-and-push-docker-image:
     needs: test-backend
